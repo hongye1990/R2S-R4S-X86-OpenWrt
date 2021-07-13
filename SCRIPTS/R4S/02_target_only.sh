@@ -68,6 +68,9 @@ wget https://downloads.openwrt.org/releases/${latest_version}/targets/rockchip/a
 zgrep -m 1 "Depends: kernel (=.*)$" Packages.gz | sed -e 's/.*-\(.*\))/\1/' > .vermagic
 sed -i -e 's/^\(.\).*vermagic$/\1cp $(TOPDIR)\/.vermagic $(LINUX_DIR)\/.vermagic/' include/kernel-defaults.mk
 
+#更改默认IP地址
+sed -i 's/192.168.1.1/192.168.30.1/g' package/base-files/files/bin/config_generate
+
 # 预配置一些插件
 cp -rf ../PATCH/files ./files
 
